@@ -35,11 +35,9 @@ var clyde = {
   edible: false,
 };
 
-var ghosts = [inky,blinky,pinky,clyde]
-
 
 // replace this comment with your four ghosts setup as objects
-
+var ghosts = [inky,blinky,pinky,clyde]
 
 // Draw the screen functionality
 function drawScreen() {
@@ -81,6 +79,14 @@ function eatDot() {
   score += 10;
 }
 
+function eatGhost(ghost){
+  if(ghost.edible === false){
+    lives -= 1;
+    console.log(`\n${ghost.name} kills Pac-Man`);
+    checkLive();
+  }
+}
+
 
 // Process Player's Input
 function processInput(key) {
@@ -92,12 +98,28 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
+    case '1':
+      eatGhost(inky)
+      break;
+    case '2':
+      eatGhost(blinky)
+      break;
+    case '3':
+      eatGhost(pinky)
+      break;
+    case '4':
+      eatGhost(clyde)
+      break;
     default:
       console.log('\nInvalid Command!');
   }
 }
 
-
+function checkLive(){
+  if (lives < 1){
+    process.exit();
+  }
+}
 //
 // YOU PROBABLY DON'T WANT TO CHANGE CODE BELOW THIS LINE
 //
