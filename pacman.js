@@ -66,9 +66,13 @@ function displayMenu() {
   console.log('(p) Eat power_pellet');
   }
   console.log('(1) Eat Inky');
+  console.log(checkEdible(inky));
   console.log('(2) Eat Blinky');
+  console.log(checkEdible(blinky));
   console.log('(3) Eat Pinky');
+  console.log(checkEdible(pinky));
   console.log('(4) Eat Clyde');
+  console.log(checkEdible(clyde))
   console.log('(q) Quit');
 }
 
@@ -89,6 +93,10 @@ function eatGhost(ghost){
     lives -= 1;
     console.log(`\n${ghost.name} kills Pac-Man`);
     checkLive();
+  } else{
+    console.log(`\n${ghost.character}${ghost.name} has been eaten`);
+    score += 200;
+    ghost.edible = false;
   }
 }
 
@@ -120,23 +128,15 @@ function processInput(key) {
       break;
     case '1':
       eatGhost(inky)
-      console.log(`\n${inky.character}${inky.name} has been eaten`);
-      score += 200;
       break;
     case '2':
       eatGhost(blinky)
-      console.log(`\n${blinky.character}${blinky.name} has been eaten`);
-      score += 200;
       break;
     case '3':
       eatGhost(pinky)
-      console.log(`\n${pinky.character}${pinky.name} has been eaten`);
-      score += 200;
       break;
     case '4':
       eatGhost(clyde)
-      console.log(`\n${clyde.character}${clyde.name} has been eaten`);
-      score += 200;
       break;
     default:
       console.log('\nInvalid Command!');
@@ -146,6 +146,14 @@ function processInput(key) {
 function checkLive(){
   if (lives < 1){
     process.exit();
+  }
+}
+
+function checkEdible(ghost){
+  if(ghost.edible === true){
+    return '(edible)';
+  }else{
+    return '(inedible)';
   }
 }
 //
