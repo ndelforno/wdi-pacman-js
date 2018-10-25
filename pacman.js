@@ -62,7 +62,9 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  if (power_pellet > 0){
   console.log('(p) Eat power_pellet');
+  }
   console.log('(1) Eat Inky');
   console.log('(2) Eat Blinky');
   console.log('(3) Eat Pinky');
@@ -90,6 +92,14 @@ function eatGhost(ghost){
   }
 }
 
+function eatPowerPellet(ghosts){
+  score += 50;
+  for(index = 0; index < ghosts.length; index += 1){
+    ghosts[index].edible = true;
+  }
+  power_pellet -= 1;
+}
+
 
 // Process Player's Input
 function processInput(key) {
@@ -101,17 +111,32 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
+    case 'p':
+      if(power_pellet > 0){
+        eatPowerPellet(ghosts);
+      }else{
+        console.log('\nNo Power-Pellet left!');
+      }
+      break;
     case '1':
       eatGhost(inky)
+      console.log(`\n${inky.character}${inky.name} has been eaten`);
+      score += 200;
       break;
     case '2':
       eatGhost(blinky)
+      console.log(`\n${blinky.character}${blinky.name} has been eaten`);
+      score += 200;
       break;
     case '3':
       eatGhost(pinky)
+      console.log(`\n${pinky.character}${pinky.name} has been eaten`);
+      score += 200;
       break;
     case '4':
       eatGhost(clyde)
+      console.log(`\n${clyde.character}${clyde.name} has been eaten`);
+      score += 200;
       break;
     default:
       console.log('\nInvalid Command!');
