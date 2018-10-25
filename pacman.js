@@ -65,14 +65,10 @@ function displayMenu() {
   if (power_pellet > 0){
   console.log('(p) Eat power_pellet');
   }
-  console.log('(1) Eat Inky');
-  console.log(checkEdible(inky));
-  console.log('(2) Eat Blinky');
-  console.log(checkEdible(blinky));
-  console.log('(3) Eat Pinky');
-  console.log(checkEdible(pinky));
-  console.log('(4) Eat Clyde');
-  console.log(checkEdible(clyde))
+  console.log('(1) Eat Inky ' + checkEdible(inky));
+  console.log('(2) Eat Blinky ' + checkEdible(blinky));
+  console.log('(3) Eat Pinky ' + checkEdible(pinky));
+  console.log('(4) Eat Clyde ' + checkEdible(clyde));
   console.log('(q) Quit');
 }
 
